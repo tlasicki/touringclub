@@ -11,20 +11,23 @@ function App() {
     e.preventDefault()
     setError(null)
     setLoading(true)
-    try {
-      const res = await fetch('/api/submit-membership', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (!res.ok) throw new Error(data.error || 'Something went wrong')
-      setSubmitted(true)
-    } catch (err) {
-      setError(err.message || 'Could not submit. Please try again.')
-    } finally {
-      setLoading(false)
-    }
+    // Airtable integration (uncomment when env vars are set on Vercel)
+    // try {
+    //   const res = await fetch('/api/submit-membership', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ email }),
+    //   })
+    //   const data = await res.json().catch(() => ({}))
+    //   if (!res.ok) throw new Error(data.error || 'Something went wrong')
+    //   setSubmitted(true)
+    // } catch (err) {
+    //   setError(err.message || 'Could not submit. Please try again.')
+    // } finally {
+    //   setLoading(false)
+    // }
+    setSubmitted(true)
+    setLoading(false)
   }
 
   return (
