@@ -1,0 +1,23 @@
+:root {
+  --snow: #f8fafc;
+  --ice: #e2e8f0;
+  --slate: #334155;
+  --peaks: #0f172a;
+  --accent: #0ea5e9;
+  --accent-dark: #0284c7;
+  --warm: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #334155;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
