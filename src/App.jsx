@@ -39,7 +39,7 @@ function App() {
       <div className="hero-overlay" aria-hidden="true" />
 
       <div className="content">
-        <p className="tagline">A Society Of Friends Earning Our Turns</p>
+        <p className="tagline">A Society Of Friends Earning Their Turns</p>
 
         <div className="waitlist-section">
           {submitted ? (
