@@ -47,8 +47,13 @@ export default async function handler(req, res) {
   if (!response.ok) {
     const errText = await response.text()
     console.error('Airtable error:', response.status, errText)
+    let detail = 'Failed to save inquiry'
+    try {
+      const errJson = JSON.parse(errText)
+      if (errJson.error?.message) detail = errJson.error.message
+    } catch {}
     res.setHeader('Content-Type', 'application/json')
-    return res.status(response.status).json({ error: 'Failed to save inquiry' })
+    return res.status(response.status).json({ error: detail })
   }
 
   res.setHeader('Content-Type', 'application/json')
