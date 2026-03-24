@@ -11,23 +11,20 @@ function App() {
     e.preventDefault()
     setError(null)
     setLoading(true)
-    // Airtable integration (uncomment when env vars are set on Vercel)
-    // try {
-    //   const res = await fetch('/api/submit-membership', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ email }),
-    //   })
-    //   const data = await res.json().catch(() => ({}))
-    //   if (!res.ok) throw new Error(data.error || 'Something went wrong')
-    //   setSubmitted(true)
-    // } catch (err) {
-    //   setError(err.message || 'Could not submit. Please try again.')
-    // } finally {
-    //   setLoading(false)
-    // }
-    setSubmitted(true)
-    setLoading(false)
+    try {
+      const res = await fetch('/api/submit-membership', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.error || 'Something went wrong')
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message || 'Could not submit. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -59,7 +56,7 @@ function App() {
                   disabled={loading}
                 />
                 <button type="submit" className="waitlist-btn" disabled={loading}>
-                  {loading ? 'Sending…' : 'Membership Inquiry'}
+                  {loading ? 'Sending…' : 'Inquiry'}
                 </button>
               </form>
             </>
